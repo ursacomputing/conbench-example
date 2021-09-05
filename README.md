@@ -32,11 +32,6 @@
 ## Contributing
 
 
-### Run tests
-    (example) $ cd ~/workspace/conbench-example/
-    (example) $ pytest -vv example/tests/
-
-
 ### Format code
     (example) $ cd ~/workspace/conbench-example/
     (example) $ black .
@@ -55,6 +50,21 @@
     (qa) $ cd ~/workspace/conbench-example/
     (qa) $ flake8
     ./foo/bar/__init__.py:1:1: F401 'FooBar' imported but unused
+
+
+### Run tests
+    (example) $ cd ~/workspace/conbench-example/
+    (example) $ pytest -vv example/tests/
+
+```
+========== test session starts ==========
+collected 2 items                                                                                                                          
+
+example/tests/test_math.py::test_add PASSED                                                                                          [ 50%]
+example/tests/test_math.py::test_subtract PASSED                                                                                     [100%]
+
+========== 2 passed in 0.00s ==========
+```
 
 
 ### Generate coverage report

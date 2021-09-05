@@ -1,4 +1,4 @@
-# An example project using Conbench
+# Example project using Conbench
 
 - https://github.com/ursacomputing/conbench
 
@@ -11,16 +11,19 @@ conbench-example
 │   ├── __init__.py
 │   ├── benchmarks
 │   │   ├── __init__.py
-│   │   └── benchmark_math.py                      (benchmark the code)
-│   ├── math.py                                    (the code)
+│   │   └── benchmark_math.py            (the benchmarks)
+│   ├── math.py                          (the code)
 │   └── tests
 │       ├── __init__.py
 │       ├── benchmarks
 │       │   ├── __init__.py
-│       │   └── test_benchmark_math.py             (test the benchmarks)
-│       └── test_math.py                           (test the code)
+│       │   ├── _asserts.py              (custom asserts)
+│       │   └── test_benchmark_math.py   (test the benchmarks)
+│       ├── conftest.py                  (pytest)
+│       └── test_math.py                 (test the code)
 ├── requirements-test.txt
 └── setup.py
+
 ```
 
 ### Create workspace
@@ -67,14 +70,17 @@ conbench-example
 
 
 ### Run tests
-    (example) $ cd ~/workspace/conbench-example/
-    (example) $ pytest -vv example/tests/
+    (example) $ cd ~/workspace/conbench-example/example/
+    (example) $ pytest -vv tests/
 
 ```
-example/tests/test_math.py::test_add PASSED
-example/tests/test_math.py::test_subtract PASSED
-example/tests/benchmarks/test_benchmark_math.py::test_benchmark_add PASSED
-example/tests/benchmarks/test_benchmark_math.py::test_benchmark_substract PASSED
+tests/test_math.py::test_add PASSED
+tests/test_math.py::test_subtract PASSED
+tests/benchmarks/test_benchmark_math.py::test_benchmark_add PASSED
+tests/benchmarks/test_benchmark_math.py::test_benchmark_add_cli PASSED
+tests/benchmarks/test_benchmark_math.py::test_benchmark_substract PASSED
+tests/benchmarks/test_benchmark_math.py::test_benchmark_substract_cli PASSED
+
 ```
 
 

@@ -1,0 +1,6 @@
+black
+conbench
+coverage
+flake8
+isort
+pytest

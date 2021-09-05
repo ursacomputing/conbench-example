@@ -23,9 +23,6 @@ conbench-example
 └── setup.py
 ```
 
-## Quick start
-
-
 ### Create workspace
     $ cd
     $ mkdir -p envs
@@ -47,9 +44,6 @@ conbench-example
     (example) $ cd ~/workspace/conbench-example/
     (example) $ pip install -r requirements-test.txt
     (example) $ python setup.py develop
-
-
-## Contributing
 
 
 ### Format code
@@ -102,4 +96,108 @@ example/tests/benchmarks/test_benchmark_math.py      14      0   100%
 example/tests/test_math.py                            5      0   100%
 -------------------------------------------------------------------------------
 TOTAL                                                39      0   100%
-```    
+```
+
+### List benchmarks
+    (example) $ cd ~/workspace/conbench-example/example
+    (example) $ conbench --help
+
+```
+Usage: conbench [OPTIONS] COMMAND [ARGS]...
+
+  Conbench: Language-independent Continuous Benchmarking (CB) Framework
+
+Options:
+  --help  Show this message and exit.
+
+Commands:
+  add       Run add benchmark.
+  subtract  Run subtract benchmark.
+ ```
+
+### Benchmark help
+    (example) $ cd ~/workspace/conbench-example/example
+    (example) $ conbench add --help
+
+ ```
+ Usage: conbench add [OPTIONS]
+
+  Run add benchmark.
+
+Options:
+  --iterations INTEGER   [default: 1]
+  --drop-caches BOOLEAN  [default: False]
+  --gc-collect BOOLEAN   [default: True]
+  --gc-disable BOOLEAN   [default: True]
+  --show-result BOOLEAN  [default: True]
+  --show-output BOOLEAN  [default: False]
+  --run-id TEXT          Group executions together with a run id.
+  --run-name TEXT        Name of run (commit, pull request, etc).
+  --help                 Show this message and exit.
+ ```
+
+### Run a benchmark
+    (example) $ cd ~/workspace/conbench-example/example
+    (example) $ conbench add --iterations=5 --show-output=true
+
+ ```
+Benchmark output:
+2
+
+Benchmark result:
+{
+    "batch_id": "e02e6c3591c24375b959499ccd667eb6",
+    "context": {
+        "benchmark_language": "Python",
+        "benchmark_language_version": "Python 3.9.6"
+    },
+    "github": {
+        "commit": "6afeca0cfb09bfa3c25eccc2bc146ccc560bbc85",
+        "repository": "https://github.com/ursacomputing/conbench-example"
+    },
+    "machine_info": {
+        "architecture_name": "arm64",
+        "cpu_core_count": "8",
+        "cpu_frequency_max_hz": "0",
+        "cpu_l1d_cache_bytes": "65536",
+        "cpu_l1i_cache_bytes": "131072",
+        "cpu_l2_cache_bytes": "4194304",
+        "cpu_l3_cache_bytes": "0",
+        "cpu_model_name": "Apple M1",
+        "cpu_thread_count": "8",
+        "gpu_count": "0",
+        "gpu_product_names": [],
+        "kernel_name": "20.6.0",
+        "memory_bytes": "17179869184",
+        "name": "diana",
+        "os_name": "macOS",
+        "os_version": "11.5.2"
+    },
+    "run_id": "e02e6c3591c24375b959499ccd667eb6",
+    "stats": {
+        "data": [
+            "0.000001",
+            "0.000000",
+            "0.000000",
+            "0.000000",
+            "0.000000"
+        ],
+        "iqr": "0.000000",
+        "iterations": 5,
+        "max": "0.000001",
+        "mean": "0.000000",
+        "median": "0.000000",
+        "min": "0.000000",
+        "q1": "0.000000",
+        "q3": "0.000000",
+        "stdev": "0.000001",
+        "time_unit": "s",
+        "times": [],
+        "unit": "s"
+    },
+    "tags": {
+        "name": "add"
+    },
+    "timestamp": "2021-09-05T05:06:12.586697+00:00"
+}
+ ```

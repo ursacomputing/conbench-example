@@ -3,6 +3,26 @@
 - https://github.com/ursacomputing/conbench
 
 
+```
+conbench-example
+├── LICENSE
+├── README.md
+├── example
+│   ├── __init__.py
+│   ├── benchmarks
+│   │   ├── __init__.py
+│   │   └── benchmark_math.py                      (benchmark the code)
+│   ├── math.py                                    (the code)
+│   └── tests
+│       ├── __init__.py
+│       ├── benchmarks
+│       │   ├── __init__.py
+│       │   └── test_benchmark_math.py             (test the benchmarks)
+│       └── test_math.py                           (test the code)
+├── requirements-test.txt
+└── setup.py
+```
+
 ## Quick start
 
 
@@ -57,13 +77,10 @@
     (example) $ pytest -vv example/tests/
 
 ```
-========== test session starts ==========
-collected 2 items                                                                                                                          
-
-example/tests/test_math.py::test_add PASSED                                                                                          [ 50%]
-example/tests/test_math.py::test_subtract PASSED                                                                                     [100%]
-
-========== 2 passed in 0.00s ==========
+example/tests/test_math.py::test_add PASSED
+example/tests/test_math.py::test_subtract PASSED
+example/tests/benchmarks/test_benchmark_math.py::test_benchmark_add PASSED
+example/tests/benchmarks/test_benchmark_math.py::test_benchmark_substract PASSED
 ```
 
 
@@ -73,14 +90,16 @@ example/tests/test_math.py::test_subtract PASSED                                
     (example) $ coverage report -m
     
 ```
-Name                                   Stmts   Miss  Cover   Missing
---------------------------------------------------------------------
-example/__init__.py                        0      0   100%
-example/benchmarks/__init__.py             0      0   100%
-example/benchmarks/benchmark_math.py      16     16     0%   1-33
-example/math.py                            4      0   100%
-example/tests/__init__.py                  0      0   100%
-example/tests/test_math.py                 5      0   100%
---------------------------------------------------------------------
-TOTAL                                     25     16    36%
+Name                                              Stmts   Miss  Cover   Missing
+-------------------------------------------------------------------------------
+example/__init__.py                                   0      0   100%
+example/benchmarks/__init__.py                        0      0   100%
+example/benchmarks/benchmark_math.py                 16      0   100%
+example/math.py                                       4      0   100%
+example/tests/__init__.py                             0      0   100%
+example/tests/benchmarks/__init__.py                  0      0   100%
+example/tests/benchmarks/test_benchmark_math.py      14      0   100%
+example/tests/test_math.py                            5      0   100%
+-------------------------------------------------------------------------------
+TOTAL                                                39      0   100%
 ```    

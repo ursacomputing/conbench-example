@@ -1,4 +1,4 @@
-from example.benchmarks import benchmark_math
+from example.benchmarks import benchmark_arithmetic
 from example.tests.benchmarks import _asserts
 
 ADD_HELP = """
@@ -43,7 +43,7 @@ def _assert_benchmark(result, name):
 
 
 def test_benchmark_add():
-    benchmark = benchmark_math.BenchmarkAdd()
+    benchmark = benchmark_arithmetic.BenchmarkAdd()
     [(result, output)] = benchmark.run(iterations=1)
     _assert_benchmark(result, "add")
     assert output == 2  # 1 + 1 = 2
@@ -55,7 +55,7 @@ def test_benchmark_add_cli():
 
 
 def test_benchmark_substract():
-    benchmark = benchmark_math.BenchmarkSubtract()
+    benchmark = benchmark_arithmetic.BenchmarkSubtract()
     [(result, output)] = benchmark.run(iterations=1)
     _assert_benchmark(result, "subtract")
     assert output == 99  # 100 - 1 = 99

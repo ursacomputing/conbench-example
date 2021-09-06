@@ -1,6 +1,6 @@
 import conbench.runner
 
-import example.math
+import example.arithmetic
 
 
 @conbench.runner.register_benchmark
@@ -15,7 +15,7 @@ class BenchmarkAdd(conbench.runner.Benchmark):
         )
 
     def _get_benchmark_function(self):
-        return lambda: example.math.add(1, 1)
+        return lambda: example.arithmetic.add(1, 1)
 
 
 @conbench.runner.register_benchmark
@@ -30,4 +30,4 @@ class BenchmarkSubtract(conbench.runner.Benchmark):
         )
 
     def _get_benchmark_function(self):
-        return lambda: example.math.subtract(100, 1)
+        return lambda: example.arithmetic.subtract(100, 1)

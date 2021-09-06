@@ -15,20 +15,21 @@ conbench-example
 ├── LICENSE
 ├── README.md
 ├── example
-│   ├── .conbench                        (conbench credentials, do not commit)
+│   ├── .conbench                              (conbench credentials, do not commit)
 │   ├── __init__.py
 │   ├── benchmarks
 │   │   ├── __init__.py
-│   │   └── benchmark_math.py            (the benchmarks)
-│   ├── math.py                          (the code)
+│   │   └── benchmark_arithmetic.py            (benchmark the code)
+│   ├── arithmetic.py                          (the code)
 │   └── tests
 │       ├── __init__.py
 │       ├── benchmarks
 │       │   ├── __init__.py
-│       │   ├── _asserts.py              (custom asserts)
-│       │   └── test_benchmark_math.py   (test the benchmarks)
-│       ├── conftest.py                  (pytest)
-│       └── test_math.py                 (test the code)
+│       │   ├── _asserts.py                    (custom asserts)
+│       │   └── test_benchmark_arithmetic.py   (test the benchmarks)
+│       ├── conftest.py                        (pytest configuration)
+│       └── test_arithmetic.py                 (test the code)
+├── requirements.txt
 ├── requirements-test.txt
 └── setup.py
 ```
@@ -57,7 +58,6 @@ higher alongside your `benchmarks`s directory. For example:
 
     conbench-example/example/.conbench 
     
-    
     -- or --
     
     conbench-example/example/benchmarks/.conbench 
@@ -74,7 +74,12 @@ to, as well as the benchmarking user credentials.
 Like all code, benchmarks should be tested for correctness. Basic example
 benchmark tests can be found here: 
 
-- [test_benchmark_math.py](https://github.com/ursacomputing/conbench-example/blob/main/example/tests/benchmarks/test_benchmark_math.py)
+- [test_benchmark_arithmetic.py](https://github.com/ursacomputing/conbench-example/blob/main/example/tests/benchmarks/test_benchmark_arithmetic.py)
+
+
+Refer to the Conbench README for more complete documentation.
+
+- https://github.com/ursacomputing/conbench
 
 
 ### Create workspace
@@ -89,13 +94,14 @@ benchmark tests can be found here:
     $ source example/bin/activate
 
 
-### Clone repo
+### Clone repository
     (example) $ cd ~/workspace/
     (example) $ git clone https://github.com/ursacomputing/conbench-example.git
 
 
 ### Install dependencies
     (example) $ cd ~/workspace/conbench-example/
+    (example) $ pip install -r requirements.txt
     (example) $ pip install -r requirements-test.txt
     (example) $ python setup.py develop
 
@@ -125,34 +131,37 @@ benchmark tests can be found here:
     (example) $ pytest -vv tests/
 
 ```
-tests/test_math.py::test_add PASSED
-tests/test_math.py::test_subtract PASSED
-tests/benchmarks/test_benchmark_math.py::test_benchmark_add PASSED
-tests/benchmarks/test_benchmark_math.py::test_benchmark_add_cli PASSED
-tests/benchmarks/test_benchmark_math.py::test_benchmark_substract PASSED
-tests/benchmarks/test_benchmark_math.py::test_benchmark_substract_cli PASSED
+tests/test_arithmetic.py::test_add PASSED
+tests/test_arithmetic.py::test_subtract PASSED
+tests/benchmarks/test_benchmark_arithmetic.py::test_benchmark_add PASSED
+tests/benchmarks/test_benchmark_arithmetic.py::test_benchmark_add_cli PASSED
+tests/benchmarks/test_benchmark_arithmetic.py::test_benchmark_substract PASSED
+tests/benchmarks/test_benchmark_arithmetic.py::test_benchmark_substract_cli PASSED
 
 ```
 
 
 ### Generate coverage report
-    (example) $ cd ~/workspace/conbench-example/
-    (example) $ coverage run --source example -m pytest example/tests/ 
+    (example) $ cd ~/workspace/conbench-example/example/
+    (example) $ coverage run --source example -m pytest tests 
     (example) $ coverage report -m
     
 ```
-Name                                              Stmts   Miss  Cover   Missing
--------------------------------------------------------------------------------
-example/__init__.py                                   0      0   100%
-example/benchmarks/__init__.py                        0      0   100%
-example/benchmarks/benchmark_math.py                 16      0   100%
-example/math.py                                       4      0   100%
-example/tests/__init__.py                             0      0   100%
-example/tests/benchmarks/__init__.py                  0      0   100%
-example/tests/benchmarks/test_benchmark_math.py      14      0   100%
-example/tests/test_math.py                            5      0   100%
--------------------------------------------------------------------------------
-TOTAL                                                39      0   100%
+coverage report -m
+Name                                            Stmts   Miss  Cover   Missing
+-----------------------------------------------------------------------------
+__init__.py                                         0      0   100%
+arithmetic.py                                       4      0   100%
+benchmarks/__init__.py                              0      0   100%
+benchmarks/benchmark_arithmetic.py                 16      0   100%
+tests/__init__.py                                   0      0   100%
+tests/benchmarks/__init__.py                        0      0   100%
+tests/benchmarks/_asserts.py                        7      0   100%
+tests/benchmarks/test_benchmark_arithmetic.py      23      0   100%
+tests/conftest.py                                   2      0   100%
+tests/test_arithmetic.py                            5      0   100%
+-----------------------------------------------------------------------------
+TOTAL                                              57      0   100%
 ```
 
 ### List benchmarks
@@ -258,3 +267,4 @@ Benchmark result:
     "timestamp": "2021-09-05T05:06:12.586697+00:00"
 }
  ```
+ 

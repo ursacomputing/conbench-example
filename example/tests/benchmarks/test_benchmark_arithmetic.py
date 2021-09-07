@@ -1,3 +1,5 @@
+import os
+
 from example.benchmarks import benchmark_arithmetic
 from example.tests.benchmarks import _asserts
 
@@ -35,6 +37,11 @@ Options:
   --run-name TEXT        Name of run (commit, pull request, etc).
   --help                 Show this message and exit.
 """
+
+# TODO: fix conbench so these shenanigans aren't required
+this_dir = os.path.dirname(os.path.abspath(__file__))
+benchmarks_dir = os.path.join(this_dir, "..", "..", "benchmarks")
+os.chdir(benchmarks_dir)
 
 
 def _assert_benchmark(result, name):
